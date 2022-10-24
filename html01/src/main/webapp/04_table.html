@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML</title>
+<style type="text/css">
+    table, th, td{
+        border : 1px solid gray;
+        border-collapse: collapse;
+    }
+</style>
+</head>
+<body>
+    <h1>HTML Table Tag</h1>
+    
+    <!-- 테이블 관련 태그 :
+        - table : 테이블 시작, 끝.
+        - caption :  테이블 이름.
+        - thead : table header.
+        - tbody : table body.
+        - tfoot : table footer.
+        - tr : table row(행).
+        - td : table data(셀).
+        - th : table cell header. 행(row) 또는 열(row)의 이름을 표시.
+     -->
+    <table>
+        <caption>Front-End 과목 성적</caption>
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>HTML</th>
+                <th>CSS</th>
+                <th>JavaScript</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>100</td>
+                <td>100</td>
+                <td>100</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>90</td>
+                <td>100</td>
+                <td>80</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>100</td>
+                <td>80</td>
+                <td>100</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>합계</th>
+                <td>290</td>
+                <td>280</td>
+                <td>280</td>
+            </tr>
+        </tfoot>
+    </table>
+    
+    <br>
+    <br>
+    
+    <table>
+    <caption>회원정보</caption>
+    <thead>
+        <tr>
+            <th>아이디</th>
+            <th>비밀번호</th>
+            <th>이메일</th> 
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>a</td>
+            <td>b</td>
+            <td>c</td>
+        </tr>
+        <tr>
+            <td>d</td>
+            <td>e</td>
+            <td>f</td>
+        </tr>
+        <tr>
+            <td>g</td>
+            <td>h</td>
+            <td>i</td>
+        </tr>
+    </tbody>
+    </table>
+    
+    <br>
+    <br>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th colspan="2">전화번호</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>변주환</td>
+                <td>111</td>
+                <td>222</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <br>
+    <br>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>변주환</th>    
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th  rowspan="2">전화번호</th>
+                <td>11</td>
+            </tr>
+            <tr>
+                <td>22</td>
+            </tr>
+        </tbody>
+    </table>        
+</body>
+</html>
