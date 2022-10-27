@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+<style type="text/css">
+div{
+    border: 1px solid gray;
+    margin-top: 8px;
+    padding: 8px;
+}
+table,th,td{
+    border: 1px solid gray;
+    border-collapse: collapse;
+    margin-top: 8px;
+}
+</style>
+</head>
+<body>
+
+<h1>Heading 만들기</h1>
+<button onclick="makeHeadings()">클릭</button>
+<div id="result">H1 ~ H6</div>
+
+<hr/>
+
+<h1>테이블 body 만들기</h1>
+<button onclick="makeTableBody()">클릭</button>
+<table>
+    <thead>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+        </tr>
+    </thead>
+    <tbody id="tblBody">
+    
+    </tbody>
+</table>
+
+
+<script>
+
+let text ='';
+function makeHeadings(){
+	const result = document.getElementById('result');
+	for(let i=1; i<7; i++){
+		//text += '<H' + i +'>' + "안녕" + '</H' + i +'>'; 
+		text += `<h${i}>안녕</h${i}>`;
+	}
+	result.innerHTML = text;
+	text='';
+}
+function makeTableBody(){
+	const tblBody = document.getElementById('tblBody');
+	for(let i=1; i<11; i++){
+		//text += '<tr> <td>' + i + '</td><td> 제목' + i +'</td><td> admin </td></tr>';  
+		text += `<tr><td> ${i} </td><td> 제목 ${i} </td><td> admin </td></tr>`;
+	}
+	tblBody.innerHTML = text;
+    text='';
+}
+
+</script>
+</body>
+</html>
