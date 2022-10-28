@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+    <h1>배열 메서드와 익명 함수</h1>
+    
+    <script>
+    const numbers = [1,2,3,4,5,6,7]
+    
+    // 1. 배열 numbers에서 홀수들로만 이루어진 배열을 만들고 출력.
+    // (1) for, if 사용 (반복문과 조건문 사용.)
+    console.log('문제1')
+    let odds = []
+    for(let x of numbers){
+    	if(x%2){
+    		odds.push(x)
+    	}
+    }
+    for(let x of odds){
+    	console.log(x)
+    }
+    // (2) 배열의 메서드와 익명 함수 사용
+    odds = numbers.filter(function(x){return x%2;})
+    console.log(odds)    
+    // 2. 배열 numbers의 원소들을 제곱한 숫자들로 이루어진 배열을 만들고 출력.
+    console.log('문제2')
+    let multiply2=[]
+    for(let x of numbers){
+    	multiply2.push(x**2)
+    }
+    for(let x of multiply2){
+        console.log(x)
+    }
+    
+    multiply2 = numbers.map(function(x){return x**2}) // x=>x**2
+    console.log(multiply2) 
+    // 3. 배열 numbers에서 홀수들의 제곱으로 이루어진 배열을 만들고 출력.
+    console.log('문제3')
+    let oddmultiply=[]
+    for(let x of odds){
+    	oddmultiply.push(x**2)
+    }
+    for(let x of oddmultiply){
+        console.log(x)
+    }
+    oddmultiply = numbers.filter(x=>x%2).map(x=>x**2)
+    console.log(oddmultiply)
+    </script>
+</body>
+</html>
