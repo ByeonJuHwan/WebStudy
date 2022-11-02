@@ -28,7 +28,24 @@
     out.println(contact.getName()+"<br/>");
     out.println(contact.getPhone()+"<br/>");
     out.println(contact.getEmail()+"<br/>");
-    
     %>
+    
+    <h2>useBean</h2>
+    <%-- 기본생성자를 이용하기 때문에 클래스에서 기본생성자를 만들어놓지 않으면 사용할수 없다. --%>
+    <jsp:useBean id="contact2" class="edu.web.jsp01.domain.Contact"></jsp:useBean>
+    <%-- Contact contact2 = new Contact(); --%>
+    
+    <jsp:setProperty property="name" name="contact2" value="홍길동"/>
+    <%-- contact2.setName("홍길동"); name 속성 = 설정할 객체의 이름--%>
+    <jsp:setProperty property="phone" name="contact2" value="010-123-123"/>
+    <jsp:setProperty property="email" name="contact2" value="hong@naver.com"/>
+    
+    <jsp:getProperty property="name" name="contact2"/>
+    <br>
+    <%-- contact2.getName(); --%>
+    <jsp:getProperty property="phone" name="contact2"/>
+    <br>
+    <jsp:getProperty property="email" name="contact2"/>
+    <br>
 </body>
 </html>
