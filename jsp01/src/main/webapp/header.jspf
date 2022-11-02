@@ -1,0 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<%-- 확장자 jspf : JSP Fragment(조각). 다른 JSP 부분으로 포함된 파일 --%>
+<header class="header">
+Home Page
+</header>
