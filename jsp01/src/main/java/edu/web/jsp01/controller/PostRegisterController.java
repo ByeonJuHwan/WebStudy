@@ -35,8 +35,7 @@ public class PostRegisterController extends HttpServlet {
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		String createTime1 = request.getParameter("createTime");
-		LocalDateTime createTime = LocalDateTime.parse(createTime1);
+		LocalDateTime createTime = LocalDateTime.parse(request.getParameter("createTime"));
 		System.out.println(createTime);
 		Post post = new Post(id,title,content,createTime);
 		
