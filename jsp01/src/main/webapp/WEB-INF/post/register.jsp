@@ -22,7 +22,7 @@ pageEncoding="UTF-8"%>
   <body>
     <h1>글 입력창</h1>
     <form method="post">
-      <input type="text" name="id" placeholder="글 번호" /> <br />
+      <input type="text" name="id" placeholder="글 번호" autofocus /> <br />
       <input type="text" name="title" placeholder="글 제목" /><br />
       <textarea rows="10" cols="30" name="content" placeholder="글 내용"></textarea><br />
       <input type="datetime-local" name="createTime" /><br />

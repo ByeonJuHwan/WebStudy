@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-    <h1>글 결과 입력창</h1>
+    <h1>글 결과창</h1>
     <form method="post">
     <input type="text" value="${post.id }" readonly/> <br>
     <input type="text" value="${post.title }" readonly/><br>
