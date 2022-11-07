@@ -88,4 +88,40 @@ public class PostDaoImpl implements PostDao {
         return list;
     }
 
+    public static final String SQL_INSERT = 
+            "insert into POSTS (TITLE,CONTENT,AUTHOR,CREATED_TIME,MODIFIED_TIME)"
+            + " values(?,?,?,sysdate,sysdate)";
+    
+    @Override
+    public int insert(Post entity) {
+        log.info("insert(entity = {})",entity);
+        log.info(SQL_INSERT);
+
+        int result = 0; // DB에 insert 성공하면 1, 실패하면 0
+        
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        
+        try {
+            conn = ds.getConnection();
+            stmt = conn.prepareStatement(SQL_INSERT);
+            stmt.setString(1, entity.getTitle());
+            stmt.setString(2, entity.getContent());
+            stmt.setString(3, entity.getAuthor());
+            
+            result = stmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                stmt.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
+    }
+
 }

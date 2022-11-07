@@ -68,10 +68,19 @@ Servlet/JSP MVC Project</description>
             <version>2.19.0</version>
         </dependency>
 
-        <dependency> <!-- 1.7 버전대를 사용해야함. -->
+        <dependency>
+            <!-- 1.7 버전대를 사용해야함. -->
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.36</version>
+        </dependency>
+
+        <!-- lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.24</version>
+            <scope>compile</scope>
         </dependency>
 
     </dependencies>
