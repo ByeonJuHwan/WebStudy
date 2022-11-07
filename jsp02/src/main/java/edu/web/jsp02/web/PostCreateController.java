@@ -54,10 +54,15 @@ public class PostCreateController extends HttpServlet {
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		String author = request.getParameter("author");
+		
 		// PostCreateDto 타입 객체 생성
 		PostCreateDto dto = new PostCreateDto(title, content, author);
+		log.info("dto = {}",dto);
+		
 		// postService.create(dto) 메서드 호출 --> postDao 호출 --> DB에 저장
-		postService.create(dto);
+		int result = postService.create(dto);
+		log.info(String.valueOf(result));
+		
 		// 포스트 목록 페이지로 이동(redirect)
 		response.sendRedirect("/jsp02/post");
 	}
