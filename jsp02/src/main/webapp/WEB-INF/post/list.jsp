@@ -12,29 +12,28 @@
     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
     crossorigin="anonymous">
 <style>
-   table {
+table {
     text-align: center;
-   }
-   
-   ul{
+}
+
+ul {
     text-align: center;
     list-style: none;
     padding: 0px;
-    
-    
-   }
-   li{
-   margin : 4px;
+}
+
+li {
+    margin: 4px;
     display: inline-block;
-   }
-   
-   a{
-    color : skyblue;
+}
+
+a {
+    color: skyblue;
     text-decoration: none;
-   }
-   
-   a:hover {
-    color:red;
+}
+
+a:hover {
+    color: red;
 }
 </style>
 </head>
@@ -46,8 +45,11 @@
         <nav>
             <!-- 웹 서버 내에서 이동 메뉴 -->
             <ul>
-                <li><a href="/jsp02">메인 페이지</a></li>
-                <li><a href="post/create">포스트 작성</a></li>
+                <li><c:url var="mainPage" value="/"></c:url> <a
+                    href="${mainPage }">메인 페이지</a></li>
+                <li><c:url var="postCreatePage"
+                        value="/post/create"></c:url> <a
+                    href="${postCreatePage }">포스트 작성</a></li>
             </ul>
         </nav>
 
@@ -65,7 +67,12 @@
                     <c:forEach var="p" items="${posts }">
                         <tr>
                             <td>${p.id }</td>
-                            <td>${p.title }</td>
+                            <td>
+                                <c:url var="postDetailPage" value="/post/detail">
+                                    <c:param name="id" value="${p.id }"></c:param>
+                                </c:url> 
+                                <a href="${postDetailPage}">${p.title }</a>
+                            </td>
                             <td>${p.author }</td>
                             <td>${p.modifiedTime }</td>
                         </tr>

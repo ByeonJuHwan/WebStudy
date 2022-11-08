@@ -13,8 +13,14 @@
         
         <nav>
             <ul>
-                <li><a href="/jsp02">메인페이지</a></li>
-                <li><a href="/jsp02/post/create">목록페이지</a></li>
+                <li>
+                    <c:url var="mainPage" value="/"></c:url>
+                    <a href="${mainPage }">메인 페이지</a>
+                </li>
+                <li>
+                    <c:url var="postCreatePage" value="/post/create"></c:url>
+                    <a href="${postCreatePage }">포스트 작성</a>
+                </li>
             </ul>
         </nav>
         

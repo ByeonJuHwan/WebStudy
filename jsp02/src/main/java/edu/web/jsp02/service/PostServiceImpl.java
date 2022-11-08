@@ -37,5 +37,11 @@ public class PostServiceImpl implements PostService {
         log.info("create(dto={})", dto);
         return postDao.insert(dto.toEntity());
     }
+    @Override
+    public Post read(Integer id) {
+        log.info("read(id={})", id);
+        // PostDao 객체의 메서드를 호출해서 DB 테이블에서 id로 검색.
+        return null;
+    }
 
 }

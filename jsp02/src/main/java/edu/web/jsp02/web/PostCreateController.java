@@ -21,9 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @WebServlet(name = "postCreateController", urlPatterns = { "/post/create" })
 public class PostCreateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-	
-	
+
 	private PostService postService;
     /**
      * @see HttpServlet#HttpServlet()
@@ -48,7 +46,7 @@ public class PostCreateController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		log.info("doPost()");
 		request.setCharacterEncoding("utf-8");
-		response.setContentType("test/html; charset=utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		
 		// 요청 파라미터 분석 : title, content, author 값을 찾음.
 		String title = request.getParameter("title");
@@ -56,7 +54,8 @@ public class PostCreateController extends HttpServlet {
 		String author = request.getParameter("author");
 		
 		// PostCreateDto 타입 객체 생성
-		PostCreateDto dto = new PostCreateDto(title, content, author);
+		PostCreateDto dto = PostCreateDto.builder()
+		        .title(title).content(content).author(author).build();
 		log.info("dto = {}",dto);
 		
 		// postService.create(dto) 메서드 호출 --> postDao 호출 --> DB에 저장

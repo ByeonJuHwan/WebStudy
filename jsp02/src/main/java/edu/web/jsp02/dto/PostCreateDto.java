@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 //  메서드를 호출할 때 argument의 타입 또는 메서드의 리턴 타입으로 사용되는 객체.
 
 @NoArgsConstructor // 기본 생성자 만듦.
-@AllArgsConstructor // 모든 플드들을 argument로 갖는 생성자를 만듦.
+@AllArgsConstructor // 모든 필드들을 argument로 갖는 생성자를 만듦.
 @Builder // Builder 패턴에서 필요한 내부 클래스와 메서드들을 만듦.
 @Data // @Getter, @Setter, @ToString, @EqualsAndHashCode, @RequiredArgsConstructor 만들어줌.
 public class PostCreateDto {
