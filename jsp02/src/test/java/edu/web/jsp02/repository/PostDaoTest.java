@@ -44,4 +44,27 @@ public class PostDaoTest {
         log.info(String.valueOf(result));
     }
     
+    @Test
+    public void testSelectById() {
+        Post post = postDao.selectById(1);
+        log.info("post = {}", post);
+    }
+    
+    @Test
+    public void testDelete() {
+        int result = postDao.delete(15);
+        log.info("result = {}", result);
+    }
+    
+    @Test
+    public void testUpdate() {
+        Post post = Post.builder()
+                .title("updateTest")
+                .content("updateTeset")
+                .id(1)
+                .build();
+        int result = postDao.update(post);
+        log.info("result = {}", result);
+    }
+    
 }

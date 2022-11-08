@@ -41,7 +41,17 @@ public class PostServiceImpl implements PostService {
     public Post read(Integer id) {
         log.info("read(id={})", id);
         // PostDao 객체의 메서드를 호출해서 DB 테이블에서 id로 검색.
-        return null;
+        return postDao.selectById(id);
+    }
+    @Override
+    public int delete(Integer id) {
+        log.info("delete(id={})", id);
+        return postDao.delete(id);
+    }
+    @Override
+    public int update(Post post) {
+        log.info("update(post={})", post);
+        return postDao.update(post);
     }
 
 }

@@ -40,11 +40,11 @@ public class PostDetailController extends HttpServlet {
 		log.info("id = {}", id);
 		
 		// 서비스 객체의 메서드를 호출해서 DB에 저장된 해당 id의 Post를 읽음.
-//		Post post = postService.read(id);
-//		log.info("post = {}", post);
+		Post post = postService.read(id);
+		log.info("post = {}", post);
 		
 		// 뷰에 전달.
-//		request.setAttribute("post", post);
+		request.setAttribute("post", post);
 		request.getRequestDispatcher("/WEB-INF/post/detail.jsp").forward(request, response);
 		
 	}
