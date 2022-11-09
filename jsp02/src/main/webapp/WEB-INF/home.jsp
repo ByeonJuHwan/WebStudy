@@ -18,6 +18,10 @@
                 <c:url var="postList" value="/post"></c:url>
                 <a href="${postList }">포스트 전체 목록</a>
             </li>
+            <li>
+                <c:url var="userList" value="/user"></c:url>
+                <a href="${userList }">사용자 전체 목록</a>
+            </li>
         </ul>
     </div>
 </div>

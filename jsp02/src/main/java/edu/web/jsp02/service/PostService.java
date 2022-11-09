@@ -12,5 +12,6 @@ public interface PostService {
     public int create(PostCreateDto dto); // 포스트 작성하기
     public Post read(Integer id); // id(글 번호)가 일치하는 포스트 1개 읽어오기
     public int delete(Integer id); // id(글 번호)가 일치하는 포스트 1개 삭제
-    public int update(PostUpdateDto dto);
+    public int update(PostUpdateDto dto); // id가 일치하는 포스트의 내용/제목 수정
+    public List<Post> search(String type, String keyword); // 검색 서비스
 }

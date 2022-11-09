@@ -213,10 +213,46 @@ public class PostDaoImpl implements PostDao {
     
     @Override
     public List<Post> selectByKeyword(String type, String keyword) {
-        log.info("selectByKeyword(type={}, keyword={}", type, keyword);
+        log.info("selectByKeyword(type={}, keyword={})", type, keyword);
+        
         List<Post> list = new ArrayList<>();
         
-        // 검색에 필요한 SQL 문장을 선택  -> SQL 실행 -> 결과 분석 -> List 생성
+        try {
+            // 검색에 필요한 SQL 문장을 선택  -> SQL 실행 -> 결과 분석 -> List 생성
+            @Cleanup
+            Connection conn = ds.getConnection();
+            
+            @Cleanup
+            PreparedStatement stmt = null;
+            switch(type) {
+            case "t": // 제목으로 검색
+                stmt = conn.prepareStatement(SELECT_BY_TITLE);
+                stmt.setString(1, "%" + keyword.toLowerCase() + "%");
+                break;
+            case "c": // 내용으로 검색
+                stmt = conn.prepareStatement(SELECT_BY_CONTENT);
+                stmt.setString(1, "%" + keyword.toLowerCase() + "%");
+                break;
+            case "tc": // 제목 + 내용 검색
+                stmt = conn.prepareStatement(SELECT_BY_TITLE_OR_CONTENT);
+                stmt.setString(1, "%" + keyword.toLowerCase() + "%");
+                stmt.setString(2, "%" + keyword.toLowerCase() + "%");
+                break;
+            case "a": // 작성자 검색
+                stmt = conn.prepareStatement(SELECT_BY_AUTHOR);
+                stmt.setString(1, "%" + keyword.toLowerCase() + "%");
+                break;
+            }
+            
+            @Cleanup
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()) {
+                Post entity = recordToEntity(rs);
+                list.add(entity);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return list;
     }
     

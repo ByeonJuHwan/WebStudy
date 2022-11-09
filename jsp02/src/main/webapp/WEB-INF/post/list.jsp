@@ -42,10 +42,13 @@ a:hover {
 </style>
 </head>
 <body>
-
     <div>
-        <h1 style="text-align: center">포스트 목록 페이지</h1>
-
+        <c:if test="${not searchPage}">
+            <h1 style="text-align: center">포스트 목록 페이지</h1>
+        </c:if>
+        <c:if test="${ searchPage }">
+            <h1 style="text-align: center">포스트 검색 결과 페이지</h1>
+        </c:if>
         <nav>
             <!-- 웹 서버 내에서 이동 메뉴 -->
             <ul>
@@ -54,6 +57,13 @@ a:hover {
                 <li><c:url var="postCreatePage"
                         value="/post/create"></c:url> <a
                     href="${postCreatePage }">포스트 작성</a></li>
+                <c:if test="${ searchPage}">
+                    <li>
+                        <c:url var="postList" value="/post"></c:url>
+                        <a href="${ postList}">목록 페이지</a>
+                    </li>
+                </c:if>
+               
             </ul>
         </nav>
 

@@ -1,4 +1,4 @@
-package edu.web.jsp02.web;
+package edu.web.jsp02.web.post;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,18 +15,18 @@ import edu.web.jsp02.service.PostServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Servlet implementation class PostListController
+ * Servlet implementation class PostSearchController
  */
-@Slf4j // Logger 객체 자동 생성.
-@WebServlet(name = "postListController", urlPatterns = { "/post" })
-public class PostListController extends HttpServlet {
+@Slf4j
+@WebServlet(name = "postSearchController", urlPatterns = { "/post/search" })
+public class PostSearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	private PostService postService;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PostListController() {
+    public PostSearchController() {
         postService = PostServiceImpl.getInstance();
     }
 
@@ -34,17 +34,19 @@ public class PostListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		log.info("doGet()");
-		
-		// PostService 객체의 메서드를 호출해서 포스트 목록 전체를 읽어옴.
-		List<Post> list = postService.read();
-		log.info("# of list = {}", list.size());
-		
-		// 포스트 목록을 뷰에 전달하기 위해서 request 객체의 속성 값으로 저장
-		request.setAttribute("posts", list);
-		
-		// 뷰로 페이지를 이동(forward)
-		request.getRequestDispatcher("/WEB-INF/post/list.jsp").forward(request, response);
+		// 요청 파라미터 분석 - 검색 타입, 검색 키워드
+	    String type = request.getParameter("type");
+	    String keyword = request.getParameter("keyword");
+	    
+	    // postService 객체의 검색 서비스 메서드를 호출.
+	    List<Post> list = postService.search(type, keyword);
+	    
+	    // 검색 결과를 뷰에 전달.
+	    request.setAttribute("posts", list);
+	    request.setAttribute("searchPage", true);
+	    
+	    // 뷰로 페이지 이동 (forward)
+	    request.getRequestDispatcher("/WEB-INF/post/list.jsp").forward(request, response);
 	}
 
 }
