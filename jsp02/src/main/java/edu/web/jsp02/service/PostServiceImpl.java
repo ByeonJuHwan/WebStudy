@@ -4,6 +4,7 @@ import java.util.List;
 
 import edu.web.jsp02.domain.Post;
 import edu.web.jsp02.dto.PostCreateDto;
+import edu.web.jsp02.dto.PostUpdateDto;
 import edu.web.jsp02.repository.PostDao;
 import edu.web.jsp02.repository.PostDaoImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -49,9 +50,9 @@ public class PostServiceImpl implements PostService {
         return postDao.delete(id);
     }
     @Override
-    public int update(Post post) {
-        log.info("update(post={})", post);
-        return postDao.update(post);
+    public int update(PostUpdateDto dto) {
+        log.info("update(post={})", dto);
+        return postDao.update(dto.toEntity());
     }
 
 }

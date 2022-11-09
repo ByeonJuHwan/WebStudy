@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.web.jsp02.domain.Post;
+import edu.web.jsp02.dto.PostUpdateDto;
 
 @TestMethodOrder(OrderAnnotation.class) // 테스트 메서드들의 실행 순서를 애너테이션으로 지정.
 public class PostDaoTest {

@@ -35,6 +35,10 @@ a {
 a:hover {
     color: red;
 }
+
+#search{
+    text-align: center;
+}
 </style>
 </head>
 <body>
@@ -54,6 +58,20 @@ a:hover {
         </nav>
 
         <main>
+            <div id="search">
+                <c:url var="postSearchPage" value="/post/search"></c:url>
+                <form action="${ postSearchPage}" method="get">
+                    <select name = "type">
+                        <option value="t">제목</option>
+                        <option value="c">내용</option>
+                        <option value="tc">제목 + 내용</option>
+                        <option value="a">작성자</option>
+                    </select>       
+                    <input type="text" name="keyword" placeholder="검색어" required />
+                    <input type="submit" value="검색"/>        
+                </form>
+            </div>
+        
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>

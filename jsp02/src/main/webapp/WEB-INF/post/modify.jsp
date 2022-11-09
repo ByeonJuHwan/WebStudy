@@ -88,6 +88,14 @@
         // 이벤트 기본 처리방식을 막음(실행되지 않도록 함).
         // -> form 양식이 서버로 제출(submit) 되지 않도록 함.
         
+        const title = document.querySelector('#title').value
+        const content = document.querySelector('#content').value
+        
+        if(title== '' || content == ''){
+        	alert('제목과 내용을 입력해주세요')
+        	return;
+        }
+        
         // 사용자에게 삭제 확인
         const check = confirm('정막 수정해?');
         console.log(check)

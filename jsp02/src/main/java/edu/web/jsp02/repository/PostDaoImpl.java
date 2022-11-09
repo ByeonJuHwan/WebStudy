@@ -15,6 +15,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 import edu.web.jsp02.datasource.HikariDataSourceUtil;
 import edu.web.jsp02.domain.Post;
+import edu.web.jsp02.dto.PostUpdateDto;
 import lombok.Cleanup;
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,6 +40,25 @@ public class PostDaoImpl implements PostDao {
         return instance;
     }
     
+    private Post recordToEntity(ResultSet rs) throws SQLException {
+        Integer id = rs.getInt("ID"); 
+        String title = rs.getString("TITLE"); 
+        String content = rs.getString("CONTENT");
+        String author = rs.getString("AUTHOR");
+        LocalDateTime createdTime = rs.getTimestamp("CREATED_TIME").toLocalDateTime();
+        LocalDateTime modifiedTime = rs.getTimestamp("MODIFIED_TIME").toLocalDateTime();
+        
+        Post entity = Post.builder().
+                id(id).
+                title(title).
+                content(content).
+                author(author).
+                createdTime(createdTime).
+                modifiedTime(modifiedTime).
+                build();
+        return entity;
+    }
+    
     public static final String SQL_SELECT="select * from POSTS order by ID desc";
     
     @Override
@@ -56,22 +76,7 @@ public class PostDaoImpl implements PostDao {
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
             while(rs.next()) { // select 결과에서 row 데이터가 있으면
-                Integer id = rs.getInt("ID"); 
-                String title = rs.getString("TITLE"); 
-                String content = rs.getString("CONTENT");
-                String author = rs.getString("AUTHOR");
-                LocalDateTime createdTime = rs.getTimestamp("CREATED_TIME").toLocalDateTime();
-                LocalDateTime modifiedTime = rs.getTimestamp("MODIFIED_TIME").toLocalDateTime();
-                
-                Post post = Post.builder().
-                        id(id).
-                        title(title).
-                        content(content).
-                        author(author).
-                        createdTime(createdTime).
-                        modifiedTime(modifiedTime).
-                        build();
-                
+                Post post = recordToEntity(rs);
                 list.add(post);
             }
         } catch (SQLException e) {
@@ -147,20 +152,7 @@ public class PostDaoImpl implements PostDao {
             @Cleanup
             ResultSet rs = stmt.executeQuery();
             if(rs.next()) {
-                String title = rs.getString("TITLE"); 
-                String content = rs.getString("CONTENT");
-                String author = rs.getString("AUTHOR");
-                LocalDateTime createdTime = rs.getTimestamp("CREATED_TIME").toLocalDateTime();
-                LocalDateTime modifiedTime = rs.getTimestamp("MODIFIED_TIME").toLocalDateTime();
-                
-                entity = Post.builder().
-                        id(id).
-                        title(title).
-                        content(content).
-                        author(author).
-                        createdTime(createdTime).
-                        modifiedTime(modifiedTime).
-                        build();
+               entity = recordToEntity(rs);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -211,5 +203,24 @@ public class PostDaoImpl implements PostDao {
         }
         return result;
     }
+    
+    public static final String SELECT_BY_TITLE ="select * from POSTS where lower(TITLE) like ? order by ID desc";
+    public static final String SELECT_BY_CONTENT ="select * from POSTS where lower(CONTENT) like ? order by ID desc";
+    public static final String SELECT_BY_TITLE_OR_CONTENT ="select * from POSTS "
+            + "where lower(CONTENT) like ?  and lower(TITLE) like ? "
+            + "order by ID desc";
+    public static final String SELECT_BY_AUTHOR ="select * from POSTS where lower(AUTHOR) like ? order by ID desc";
+    
+    @Override
+    public List<Post> selectByKeyword(String type, String keyword) {
+        log.info("selectByKeyword(type={}, keyword={}", type, keyword);
+        List<Post> list = new ArrayList<>();
+        
+        // 검색에 필요한 SQL 문장을 선택  -> SQL 실행 -> 결과 분석 -> List 생성
+        return list;
+    }
+    
+    
+    
 
 }

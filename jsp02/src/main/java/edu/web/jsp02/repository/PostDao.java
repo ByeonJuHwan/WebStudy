@@ -3,6 +3,7 @@ package edu.web.jsp02.repository;
 import java.util.List;
 
 import edu.web.jsp02.domain.Post;
+import edu.web.jsp02.dto.PostUpdateDto;
 
 public interface PostDao {
 
@@ -10,5 +11,6 @@ public interface PostDao {
     public int insert(Post entity);
     public Post selectById(Integer id);
     public int delete(Integer id);
-    public int update(Post post);
+    public int update(Post entity);
+    public List<Post> selectByKeyword(String type, String keyword);
 }
