@@ -8,29 +8,37 @@
 <title>MVC</title>
 </head>
 <body>
-<div>
     <div>
-        <h1>메인 페이지</h1>
-    </div>
-    <div>
-        <ul>
-            <li>
-                <c:url var="postList" value="/post"></c:url>
-                <a href="${postList }">포스트 전체 목록</a>
-            </li>
-            <li>
-                <c:url var="userList" value="/user"></c:url>
-                <a href="${userList }">사용자 전체 목록</a>
-            </li>
-            <li>
+        <div>
+            <h1>메인 페이지</h1>
+        </div>
+        <div>
+            <ul>
                 <%-- 로그인 정보가 있는 경우 --%>
                 <%-- EL not empty 연산자 : not null && "" --%>
-                <c:if test=${ not empty signInUser}>
-                
+                <c:if test="${ not empty signInUser}">
+                    <li><c:url var="signOutPage"
+                            value="/user/signout"></c:url> <a
+                        href="${ signOutPage}">로그아웃</a></li>
                 </c:if>
-            </li>
-        </ul>
+
+                <%-- 로그인 정보가 없는 경우 --%>
+                <c:if test="${ empty signInUser}">
+                    <li><c:url var="signInPage"
+                            value="/user/signin"></c:url> <a
+                        href="${signInPage }">로그인</a></li>
+                    <li><c:url var="signUpPage"
+                            value="/user/signup"></c:url> <a
+                        href="${ signUpPage}">회원가입</a></li>
+                </c:if>
+
+                <li><c:url var="postList" value="/post"></c:url> <a
+                    href="${postList }">포스트 전체 목록</a></li>
+                <li><c:url var="userList" value="/user"></c:url> <a
+                    href="${userList }">사용자 전체 목록</a></li>
+
+            </ul>
+        </div>
     </div>
-</div>
 </body>
 </html>

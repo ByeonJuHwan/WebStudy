@@ -52,6 +52,24 @@ a:hover {
         <nav>
             <!-- 웹 서버 내에서 이동 메뉴 -->
             <ul>
+                <%-- 로그인 정보가 있는 경우 --%>
+                <%-- EL not empty 연산자 : not null && "" --%>
+                <c:if test="${ not empty signInUser}">
+                    <li><c:url var="signOutPage"
+                            value="/user/signout"></c:url> <a
+                        href="${ signOutPage}">로그아웃</a></li>
+                </c:if>
+
+                <%-- 로그인 정보가 없는 경우 --%>
+                <c:if test="${ empty signInUser}">
+                    <li><c:url var="signInPage"
+                            value="/user/signin"></c:url> <a
+                        href="${signInPage }">로그인</a></li>
+                    <li><c:url var="signUpPage"
+                            value="/user/signup"></c:url> <a
+                        href="${ signUpPage}">회원가입</a></li>
+                </c:if>
+                
                 <li><c:url var="mainPage" value="/"></c:url> <a
                     href="${mainPage }">메인 페이지</a></li>
                 <li><c:url var="postCreatePage"
