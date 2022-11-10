@@ -127,7 +127,9 @@ public class UserDaoImpl implements UserDao {
         }
         return result;
     }
+
     public static final String UPDATE = "update USERS set USERNAME=?,PASSWORD=?, EMAIL = ? where ID = ?";
+
     @Override
     public int modify(User entity) {
         int result = 0;
@@ -140,13 +142,58 @@ public class UserDaoImpl implements UserDao {
             stmt.setString(2, entity.getPassword());
             stmt.setString(3, entity.getEmail());
             stmt.setInt(4, entity.getId());
-            
+
             result = stmt.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return result;
+    }
+
+    public static final String SIGNUP = "insert into USERS (USERNAME,PASSWORD,EMAIL)" + " values(?,?,?)";
+
+    @Override
+    public int signUp(User entity) {
+        int result = 0;
+        try {
+            @Cleanup
+            Connection conn = ds.getConnection();
+            @Cleanup
+            PreparedStatement stmt = conn.prepareStatement(SIGNUP);
+            stmt.setString(1, entity.getUserName());
+            stmt.setString(2, entity.getPassword());
+            stmt.setString(3, entity.getEmail());
+
+            result = stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    private static final String SELECT_BY_USERNAME_PASSWORD = "select * from USERS where USERNAME=? and PASSWORD=?";
+
+    @Override
+    public User selectByUsernameAndPassword(String userName, String password) {
+        User entity = null;
+
+        try {
+            @Cleanup
+            Connection conn = ds.getConnection();
+            @Cleanup
+            PreparedStatement stmt = conn.prepareStatement(SELECT_BY_USERNAME_PASSWORD);
+            stmt.setString(1, userName);
+            stmt.setString(2, password);
+            @Cleanup
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()) {
+                entity = recordToEntity(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return entity;
     }
 
 }

@@ -56,7 +56,8 @@ a:hover {
                 <%-- EL not empty 연산자 : not null && "" --%>
                 <c:if test="${ not empty signInUser}">
                     <li><c:url var="signOutPage"
-                            value="/user/signout"></c:url> <a
+                            value="/user/signout"></c:url>
+                            <span>${signInUser}</span> <a
                         href="${ signOutPage}">로그아웃</a></li>
                 </c:if>
 

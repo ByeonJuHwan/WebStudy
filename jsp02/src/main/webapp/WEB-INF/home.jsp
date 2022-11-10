@@ -18,8 +18,9 @@
                 <%-- EL not empty 연산자 : not null && "" --%>
                 <c:if test="${ not empty signInUser}">
                     <li><c:url var="signOutPage"
-                            value="/user/signout"></c:url> <a
-                        href="${ signOutPage}">로그아웃</a></li>
+                            value="/user/signout"></c:url> 
+                    <span>${signInUser}</span>
+                    <a href="${ signOutPage}">로그아웃</a></li>
                 </c:if>
 
                 <%-- 로그인 정보가 없는 경우 --%>

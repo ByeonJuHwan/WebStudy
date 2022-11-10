@@ -4,6 +4,7 @@ import java.util.List;
 
 import edu.web.jsp02.domain.User;
 import edu.web.jsp02.dto.UserJoinDto;
+import edu.web.jsp02.dto.UserSignUpDto;
 import edu.web.jsp02.dto.UserUpdateDto;
 import edu.web.jsp02.repository.UserDao;
 import edu.web.jsp02.repository.UserDaoImpl;
@@ -42,6 +43,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public int modify(UserUpdateDto entity) {
         return userDao.modify(entity.toEntity());
+    }
+    @Override
+    public int signUp(UserSignUpDto dto) {
+        return userDao.signUp(dto.toEntity());
+    }
+    @Override
+    public User signIn(String userName, String password) {
+        return userDao.selectByUsernameAndPassword(userName,password);
     }
     
     

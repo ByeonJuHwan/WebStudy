@@ -4,6 +4,7 @@ import java.util.List;
 
 import edu.web.jsp02.domain.User;
 import edu.web.jsp02.dto.UserJoinDto;
+import edu.web.jsp02.dto.UserSignUpDto;
 import edu.web.jsp02.dto.UserUpdateDto;
 
 public interface UserService {
@@ -12,4 +13,6 @@ public interface UserService {
     public User read(Integer id);
     public int delete(Integer id);
     public int modify(UserUpdateDto entity);
+    public int signUp(UserSignUpDto dto);
+    public User signIn(String userName, String password);
 }

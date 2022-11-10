@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.web.jsp02.dto.UserSignUpDto;
+import edu.web.jsp02.service.UserService;
+import edu.web.jsp02.service.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -16,12 +19,13 @@ import lombok.extern.slf4j.Slf4j;
 @WebServlet(name = "userSignUpController", urlPatterns = { "/user/signup" })
 public class UserSignUpController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
+	private UserService userService;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public UserSignUpController() {
-        
+        userService = UserServiceImpl.getInstance();
     }
 
 	/**
@@ -35,7 +39,21 @@ public class UserSignUpController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String userName = request.getParameter("userName");
+		String password = request.getParameter("password");
+		String email = request.getParameter("email");
 		
+		UserSignUpDto dto = UserSignUpDto.builder()
+		        .userName(userName).password(password).email(email).build();
+		
+		int result = userService.signUp(dto);
+		log.info("회원 가입 결과 = {}" , result);
+		
+		if(result==1) { // 회원 가입 성공
+		    response.sendRedirect("/jsp02/user/signin"); //로그인 페이지로 이동
+		}else {
+		    response.sendRedirect("/jsp02/user/signup"); // 회원 가입 페이지로 이동
+		}
 	}
 
 }

@@ -10,4 +10,7 @@ public interface UserDao {
     public User select(Integer id);
     public int delete(Integer id);
     public int modify(User entity);
+    public int signUp(User entity);
+    public User selectByUsernameAndPassword(String userName, String password);
+    
 }
