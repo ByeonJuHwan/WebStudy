@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.web.jsp02.domain.User;
 import edu.web.jsp02.dto.UserJoinDto;
+import edu.web.jsp02.dto.UserUpdateDto;
 import edu.web.jsp02.service.UserService;
 import edu.web.jsp02.service.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -50,7 +51,7 @@ public class UserModifyController extends HttpServlet {
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
 		
-		UserJoinDto entity = UserJoinDto.builder()
+		UserUpdateDto entity = UserUpdateDto.builder()
 		        .userName(userName).password(password).email(email).id(id).build();
 		
 		int modify = userService.modify(entity);

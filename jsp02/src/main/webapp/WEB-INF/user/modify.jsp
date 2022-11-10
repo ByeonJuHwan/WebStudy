@@ -6,9 +6,50 @@
 <head>
 <meta charset="UTF-8">
 <title>JSP2</title>
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+    crossorigin="anonymous">
+<style>
+h1 {
+    text-align: center;
+}
+
+.formDiv {
+    text-align: center;
+}
+
+ul {
+    text-align: center;
+    list-style: none;
+    padding: 0px;
+}
+
+li {
+    margin: 4px;
+    display: inline-block;
+}
+li > a {
+    color: skyblue;
+    text-decoration: none;
+}
+
+a:hover {
+    color: red;
+}
+
+div > input {
+    margin: 3em;
+}
+
+button {
+    margin: 2em;
+}
+</style>
 </head>
 <body>
-    <div>
+    <div class="formDiv">
         <h1>회원 정보 수정</h1>
         <nav>
             <ul>
@@ -27,28 +68,33 @@
             <form id="userForm">
                 <div>
                     <label for="id">회원번호</label> <input id="id"
-                        type="text" name="id" value="${user.id }" readonly />
+                        type="text" name="id" value="${user.id }"
+                        readonly />
                 </div>
                 <div>
-                    <label for="userName">아이디</label> <input id="userName"
-                        type="text" value="${user.userName }" name="userName" autofocus />
+                    <label for="userName">아이디</label> <input
+                        id="userName" type="text"
+                        value="${user.userName }" name="userName"
+                        autofocus />
                 </div>
                 <div>
-                    <label for="password">비밀번호</label>
-                    <input type="text" id="password" value="${user.password }" name="password" />
+                    <label for="password">비밀번호</label> <input
+                        type="text" id="password"
+                        value="${user.password }" name="password" />
                 </div>
                 <div>
                     <label for="email">이메일</label> <input id="email"
-                        type="text" value="${user.email }" name="email"  />
+                        type="text" value="${user.email }" name="email" />
                 </div>
                 <div>
-                    <label for="points">포인트</label> <input
-                        id="points" type="number"
-                        value="${user.points }" readonly />
+                    <label for="points">포인트</label> <input id="points"
+                        type="number" value="${user.points }" readonly />
                 </div>
                 <div>
-                    <button id="btnDelete">삭제</button>
-                    <button id="btnUpdate">수정 완료</button>
+                    <button id="btnDelete" type="button"
+                        class="btn btn-outline-danger">삭제</button>
+                    <button id="btnUpdate" type="button"
+                        class="btn btn-outline-success">수정 완료</button>
                     <!-- form 안에서 작성된 버튼들은 form의 action 주소로 method 방식의 요청을 보냄. -->
                 </div>
             </form>
@@ -95,4 +141,8 @@
     
     
     </script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
 </html>

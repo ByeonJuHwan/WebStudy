@@ -10,13 +10,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class UserJoinDto {
+public class UserUpdateDto {
+    private Integer id;
     private String userName;
     private String password;
     private String email;
     
     public User toEntity() {
         return User.builder()
+                .id(id)
                 .userName(userName)
                 .password(password)
                 .email(email)

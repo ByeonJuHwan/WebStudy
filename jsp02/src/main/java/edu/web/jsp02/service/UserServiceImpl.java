@@ -4,6 +4,7 @@ import java.util.List;
 
 import edu.web.jsp02.domain.User;
 import edu.web.jsp02.dto.UserJoinDto;
+import edu.web.jsp02.dto.UserUpdateDto;
 import edu.web.jsp02.repository.UserDao;
 import edu.web.jsp02.repository.UserDaoImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -39,7 +40,7 @@ public class UserServiceImpl implements UserService {
         return userDao.delete(id);
     }
     @Override
-    public int modify(UserJoinDto entity) {
+    public int modify(UserUpdateDto entity) {
         return userDao.modify(entity.toEntity());
     }
     

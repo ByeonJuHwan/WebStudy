@@ -18,7 +18,7 @@
                     <a href="${mainPage }">메인 페이지</a>
                 </li>
                 <li>
-                    <c:url var="userCreatePage" value="/user/create"></c:url>
+                    <c:url var="userCreatePage" value="/user/join"></c:url>
                     <a href="${userCreatePage }">회원가입</a>
                 </li>
             </ul>

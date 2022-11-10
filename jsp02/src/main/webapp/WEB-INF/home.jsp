@@ -22,6 +22,13 @@
                 <c:url var="userList" value="/user"></c:url>
                 <a href="${userList }">사용자 전체 목록</a>
             </li>
+            <li>
+                <%-- 로그인 정보가 있는 경우 --%>
+                <%-- EL not empty 연산자 : not null && "" --%>
+                <c:if test=${ not empty signInUser}>
+                
+                </c:if>
+            </li>
         </ul>
     </div>
 </div>
