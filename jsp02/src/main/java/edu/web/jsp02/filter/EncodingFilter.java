@@ -25,7 +25,7 @@ public class EncodingFilter extends HttpFilter implements Filter {
      * @see HttpFilter#HttpFilter()
      */
     public EncodingFilter() {
-        log.trace("EncodingFilter 생성자 호출");
+        log.info("EncodingFilter 생성자 호출");
     }
 
 	/**

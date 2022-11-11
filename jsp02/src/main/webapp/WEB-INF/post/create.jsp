@@ -13,6 +13,14 @@
         
         <nav>
             <ul>
+                <%-- 로그인 정보가 있으면 --%>
+                <c:if test="${ not empty signInUser}">
+                    <li> 
+                        <span>${signInUser}</span>
+                        <c:url var="signOutPage" value="/user/signout"></c:url>
+                        <a href="${signOutPage }">로그아웃</a>
+                    </li>
+                </c:if>
                 <li>
                     <c:url var="mainPage" value="/"></c:url>
                     <a href="${mainPage }">메인 페이지</a>
@@ -33,7 +41,7 @@
                     <textarea rows="5" cols="80" name="content" placeholder="내용" required></textarea>
                 </div>
                 <div>
-                    <input type="text" name="author" placeholder="작성자" required/> 
+                    <input type="hidden" name="author" value="${signInUser }" required/> 
                 </div>
                 <div>
                     <input type="submit" value="등록"/> 

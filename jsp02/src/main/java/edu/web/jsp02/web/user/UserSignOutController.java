@@ -22,7 +22,7 @@ public class UserSignOutController extends HttpServlet {
 	    // (1) 세션에 저장된 속성(attribute)를 제거
 	    HttpSession session = request.getSession();
 	    session.removeAttribute("signInUser"); 
-	    
+	
 	    // (2) 세션 객체 무효화
 	    session.invalidate();
 	    

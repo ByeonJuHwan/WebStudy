@@ -12,6 +12,12 @@
         <h1>포스트 수정 페이지</h1>
         <nav>
             <ul>
+                <c:if test="${not empty signInUser }">
+                    <li><c:url var="signOutPage"
+                            value="/user/signout"></c:url> <span>${ signInUser}</span>
+                        <a href="${signOutPage }">로그아웃</a></li>
+                </c:if>
+                
                 <li><c:url var="mainPage" value="/"></c:url> <a
                     href="${mainPage }">메인페이지</a></li>
                 <li><c:url var="postListPage" value="/post"></c:url>
@@ -34,23 +40,26 @@
                         type="text" name="title" value="${post.title }" required autofocus/>
                 </div>
                 <div>
-                    <label for="content"></label>
+                    <label for="content">내용</label>
                     <textarea id="content" rows="5" cols="40" name="content" required>${post.content}</textarea>
                 </div>
-                <div>
+                <div style="display: none;">
                     <label for="author">작성자</label> <input id="author"
-                        type="text" value="${post.author }" readonly />
+                        type="hidden" value="${post.author }" readonly />
                 </div>
+                
                 <div>
                     <label for="createdTime"></label> <input
                         id="createdTime" type="text"
                         value="${post.createdTime }" readonly />
                 </div>
-                <div>
-                    <button id="btnDelete">삭제</button>
-                    <button id="btnUpdate">수정 완료</button>
+                <c:if test="${signInUser == post.author }">
+                    <div>
+                        <button id="btnDelete">삭제</button>
+                        <button id="btnUpdate">수정 완료</button>
                     <!-- form 안에서 작성된 버튼들은 form의 action 주소로 method 방식의 요청을 보냄. -->
-                </div>
+                    </div>
+                </c:if>
             </form>
         </main>
     </div>
