@@ -10,7 +10,7 @@ public class HikariDataSourceUtil {
     private HikariDataSource ds;
     
     private HikariDataSourceUtil() {
-        // HikariCP을 사용하기 위한 설정(confiuration)
+        // HikariCP을 사용하기 위한 설정(configuration)
         HikariConfig config = new HikariConfig();
         config.setDriverClassName("oracle.jdbc.OracleDriver"); // 연결을 맺기 위한 DB 드라이버.
         config.setJdbcUrl("jdbc:oracle:thin:@localhost:1521:xe"); // DB 서버 URL

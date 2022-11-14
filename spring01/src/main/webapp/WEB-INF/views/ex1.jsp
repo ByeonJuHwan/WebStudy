@@ -27,5 +27,14 @@
         <input type="number" placeholder="나이" name="age"/>
         <input type="submit" value="제출"/>
     </form>
+    
+    <h2>POST: ex4, DTO</h2>
+    <c:url var="ex4" value="/ex4"></c:url>
+    <form action="${ex4 }" method="post">
+        <input type="text" placeholder="사용자 이름" name="userName"/>
+        <input type="number" placeholder="나이" name="age"/>
+        <input type="submit" value="제출"/>
+    </form>
+    
 </body>
 </html>
