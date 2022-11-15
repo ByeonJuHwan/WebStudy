@@ -22,6 +22,14 @@ public class TestMapper {
     @Autowired
     private PostMapper postMapper;
     
+    
+    @Test
+    public void testSelectById() {
+        Post post = postMapper.selectById(1);
+        Assertions.assertNotNull(post);
+        log.info(post.toString());
+    }
+    
     @Test
     public void testPostMapper() {
         Assertions.assertNotNull(postMapper);
