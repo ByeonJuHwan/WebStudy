@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.spring02.domain.Post;
 import com.example.spring02.dto.PostCreateDto;
@@ -15,51 +16,53 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Controller
+@Controller // 스프링 컨테이너가 Bean으로 생성, 관리
 @RequiredArgsConstructor
+@RequestMapping("/post")
+// -> 클래스에 @RequestMapping 애너테이션을 사용하면, 
+// 그 클래스의 모든 메서드들의 매핑 주소는 @RequestMapping 에서 설정된 URL로 시작함.
 public class PostController {
     
-    private final PostService postService;
+    private final PostService postService; // 생성자에 의한 의존성 주입
     
     
-    @GetMapping("/post/create")
+    @GetMapping("/create")
     public void createPost() {}
         
     
     
-    @PostMapping("/post/create")
+    @PostMapping("/create")
     public String createPost(PostCreateDto dto) {
         log.info("dto = {}", dto);
         Post post = dto.toEntity();
         
         int result = postService.createPost(post);
         log.info("result = {}", result);
-        return "redirect:/post/list";
+        return "redirect:/post/list"; 
     }
     
-    @GetMapping("/post/list")
-    public String list(Model model) {
+    @GetMapping("/list")
+    public void list(Model model) {
         log.info("list()");
         List<Post> list = postService.read();
         model.addAttribute("list", list);
-        return "/post/list";
+        // /WEB-INF/views/post/list.jsp
     }
     
-    @GetMapping("/post/detail")
-    public String detail(Integer id, Model model) {
+    @GetMapping("/detail")
+    public void detail(Integer id, Model model) {
         Post post = postService.read(id);
         model.addAttribute("post", post);
-        return "/post/detail";
     }
     
-    @GetMapping("/post/modify")
+    @GetMapping("/modify")
     public String modify(Integer id, Model model) {
         Post post = postService.read(id);
         model.addAttribute("post", post);
         return "/post/modify";
     }
     
-    @PostMapping("/post/modify")
+    @PostMapping("/modify")
     public String modify(String title,String content,Integer id, Model model) {
         Post post = Post.builder().title(title).content(content).id(id).build();
         int result = postService.update(post);
@@ -68,7 +71,7 @@ public class PostController {
         return "redirect:/post/detail";
     }
     
-    @PostMapping("/post/delete")
+    @PostMapping("/delete")
     public String delete(Integer id) {
         int result = postService.delete(id);
         log.info("result = {}", result);

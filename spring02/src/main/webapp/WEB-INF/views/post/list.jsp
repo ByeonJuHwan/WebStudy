@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>JSP2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>글목록</title>
 <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
     rel="stylesheet"
@@ -15,79 +16,59 @@
 table {
     text-align: center;
 }
-
-ul {
-    text-align: center;
-    list-style: none;
-    padding: 0px;
-}
-
-li {
-    margin: 4px;
-    display: inline-block;
-}
-
-a {
-    color: skyblue;
-    text-decoration: none;
-}
-
-a:hover {
-    color: red;
-}
-
 </style>
 </head>
 <body>
-    <h1 style="text-align: center;">글 목록</h1>
-    <div>
+    <div class="container-fluid">
+        <header class="my-2 p-4 text-bg-secondary text-center">
+            <h1>글 목록 페이지</h1>
+        </header>
         <nav>
-            <ul>
-                <li>
-                    <c:url var="mainPage" value="/"></c:url>
-                    <a href="${mainPage }">메인페이지</a>
-                </li>
-                <li>
-                    <c:url var="createPage" value="/post/create"></c:url>
-                    <a href="${createPage }">글작성하기</a>
-                </li>
+            <ul class="nav bg-light">
+                <li class="nav-item"><c:url var="mainPage"
+                        value="/"></c:url> <a class="nav-link"
+                    href="${mainPage }">메인페이지</a></li>
+                <li class="nav-item"><c:url var="createPage"
+                        value="/post/create"></c:url> <a
+                    class="nav-link" href="${createPage }">새 글 작성</a></li>
             </ul>
-    
         </nav>
-        <main>
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>번호</th>
-                        <th>제목</th>
-                        <th>작성자</th>
-                        <th>수정 시간</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach var="p" items="${list }">
+        <main class="my-2">
+            <div class="card">
+                <table class="table table-striped table-hover">
+                    <thead>
                         <tr>
-                            <td>${p.id }</td>
-                            <td>
-                                <c:url var="postDetailPage" value="/post/detail">
-                                    <c:param name="id" value="${p.id }"></c:param>
-                                </c:url> 
-                                <a href="${postDetailPage}">${p.title }</a>
-                            </td>
-                            <td>${p.author }</td>
-                            <td>${p.modified_time }</td>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>작성자</th>
+                            <th>수정 시간</th>
                         </tr>
-                    </c:forEach>
-                </tbody>
-
-            </table>
-
+                    </thead>
+                    <tbody>
+                        <c:forEach var="p" items="${list }">
+                            <c:url var="postDetailPage"
+                                value="/post/detail">
+                                <c:param name="id" value="${p.id }"></c:param>
+                            </c:url>
+                            <tr
+                                onclick="location.href='${postDetailPage}'">
+                                <td>${p.id }</td>
+                                <td>${p.title }</td>
+                                <td>${p.author }</td>
+                                <td>${p.modified_time }</td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </div>
         </main>
-
     </div>
     <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
         crossorigin="anonymous"></script>
 </body>
 </body>

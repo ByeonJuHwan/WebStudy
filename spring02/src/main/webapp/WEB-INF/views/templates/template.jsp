@@ -24,7 +24,7 @@
                 <li class="nav-item"><c:url var="list" value="/post/list"></c:url> <a class="nav-link active"
                     href="${list }">글목록</a></li>
                 <li class="nav-item"><c:url var="createPost" value="/post/create"></c:url>
-                    <a class="nav-link" href="${createPost }">글 작성하기</a></li>
+                    <a class="nav-link" href="${createPost }">새 글 작성</a></li>
                 <li class="nav-item">
                     <a class="nav-link disabled" href="">Link3</a>
                 </li>
