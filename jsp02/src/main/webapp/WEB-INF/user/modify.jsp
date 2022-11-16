@@ -103,7 +103,7 @@ button {
     <c:url var="userDelete" value="/user/delete"></c:url>
     <c:url var="userUpdate" value="/user/modify"></c:url>
     <script>
-    const form = document.querySelector('#userForm')
+    const form =    
     const btnDelete = document.querySelector('#btnDelete')
     btnDelete.addEventListener('click', function(event){
     	event.preventDefault()

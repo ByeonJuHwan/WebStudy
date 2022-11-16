@@ -34,9 +34,7 @@ public class PostController {
     @PostMapping("/create")
     public String createPost(PostCreateDto dto) {
         log.info("dto = {}", dto);
-        Post post = dto.toEntity();
-        
-        int result = postService.createPost(post);
+        int result = postService.createPost(dto.toEntity());
         log.info("result = {}", result);
         return "redirect:/post/list"; 
     }
