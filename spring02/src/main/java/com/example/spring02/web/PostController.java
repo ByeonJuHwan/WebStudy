@@ -1,5 +1,6 @@
 package com.example.spring02.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.spring02.domain.Post;
 import com.example.spring02.dto.PostCreateDto;
+import com.example.spring02.dto.PostSearchDto;
 import com.example.spring02.service.PostService;
 
 import lombok.RequiredArgsConstructor;
@@ -74,5 +76,14 @@ public class PostController {
         int result = postService.delete(id);
         log.info("result = {}", result);
         return "redirect:/post/list";
+    }
+    
+    @GetMapping("/search")
+    public String search(PostSearchDto dto, Model model) {
+        log.info("search(dto={})", dto);
+        List<Post> list  = new ArrayList<>();
+        list = postService.search(dto);
+        model.addAttribute("list", list);
+        return "/post/list";
     }
 }

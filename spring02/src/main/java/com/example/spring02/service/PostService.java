@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.spring02.domain.Post;
+import com.example.spring02.dto.PostSearchDto;
 import com.example.spring02.mapper.PostMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -46,6 +47,11 @@ public class PostService {
 
     public int createPost(Post post) {
         return postMapper.insert(post);
+    }
+    
+    public List<Post> search(PostSearchDto dto){
+        dto.setKeyword("%"+dto.getKeyword().toLowerCase()+"%");
+        return postMapper.selectByKeywordOrderByIdDesc(dto);
     }
     
     
