@@ -26,7 +26,12 @@
                 <li class="nav-item"><c:url var="createPost" value="/post/create"></c:url>
                     <a class="nav-link" href="${createPost }">새 글 작성</a></li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="">Link3</a>
+                    <c:url var="userList" value="/user/list"></c:url>
+                    <a class="nav-link" href="${userList }">회원 목록</a>
+                </li>
+                <li class="nav-item">
+                    <c:url var="userJoin" value="/user/join"></c:url>
+                    <a class="nav-link" href="${userJoin }">회원 가입</a>
                 </li>
             </ul>
         </nav>
