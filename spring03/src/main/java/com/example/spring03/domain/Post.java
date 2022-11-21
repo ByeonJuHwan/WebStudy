@@ -20,7 +20,8 @@ import lombok.ToString;
 @ToString
 @Entity(name="POSTS") // 엔터티 클래스와 데이터베이스 테이블의 이름이 다르면 반드시 name 속성을 지정.
 @SequenceGenerator(name="POSTS_SEQ_GEN",sequenceName = "POSTS_SEQ",initialValue = 1, allocationSize = 1)
-public class Post {
+// Oracle의 시퀀스 객체를 고유키 생성에 사요하기 위해서.
+public class Post extends BaseTimeEntity{
     
     @Id // Primary Key(고유키)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "POSTS_SEQ_GEN")
@@ -35,4 +36,10 @@ public class Post {
     @Column(nullable = false)
     private String author;
     
+    
+    public Post update(String title, String content) {
+        this.title = title;
+        this.content = content;
+        return this;    
+    }
 }
