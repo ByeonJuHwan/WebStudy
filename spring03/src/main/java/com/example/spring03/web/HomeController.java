@@ -12,7 +12,6 @@ public class HomeController {
 
     @GetMapping("/") // 요청 URL 매핑.
     public String home(Model model) {
-        log.info("home()");
         
         model.addAttribute("msg", "Spring Boot ㅎㅎ");
         
