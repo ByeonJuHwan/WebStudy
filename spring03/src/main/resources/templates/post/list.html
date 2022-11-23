@@ -20,9 +20,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="post : ${list}" onClick="location.href='/post/detail'">
+                    <tr th:each="post : ${list}">
                         <td th:text="${post.id}"></td>
-                        <td th:text="${post.title}"></td>
+                        <td>
+                            <a th:href="@{/post/detail?id={id}(id=${post.id})}" th:text="${post.title}"></a>
+                        </td>
                         <td th:text="${post.author}"></td>
                         <td
                             th:text="${#temporals.format(post.modifiedTime, 'yyyy-mm-dd HH:mm:ss')}"></td>
@@ -50,6 +52,25 @@
             </div>
         </div>
     </div><!-- modal -->
+    
+      <div id="deleteModal" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">삭제성공</h5>
+                    <button type="button" class="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>삭제 성공</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">확인</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- modal -->
 </div> <!-- content -->
 
 <script layout:fragment="script" th:inline="javascript">
@@ -57,6 +78,11 @@ if([[${createdId}]]){
 	const createModal = document.querySelector('#createModal');
 	const modal = new bootstrap.Modal(createModal);
 	modal.show();
+}
+if([[${deletedPostId}]]){
+    const createModal = document.querySelector('#deleteModal');
+    const modal = new bootstrap.Modal(createModal);
+    modal.show();
 }
 </script>
 

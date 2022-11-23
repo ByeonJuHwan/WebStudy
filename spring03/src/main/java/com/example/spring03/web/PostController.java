@@ -1,6 +1,7 @@
 package com.example.spring03.web;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +9,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.spring03.domain.Post;
 import com.example.spring03.dto.PostCreateDto;
+import com.example.spring03.dto.PostUpdateDto;
 import com.example.spring03.service.PostService;
 
 import lombok.RequiredArgsConstructor;
@@ -36,8 +38,29 @@ public class PostController {
         return "redirect:/";
     }
     
-    @GetMapping("/detail")
-    public void detail() {
-        
+    @GetMapping({"/detail", "/modify"})
+    // 컨트롤러 메서드가 2개 이상의 요청 주소를 처리할 때는 mapping에서 요청 주소를 배열로 설정.
+    public void detail(Integer id, Model model) {
+        log.info("detail={}", id);
+        Post post = postService.read(id);
+        model.addAttribute("post", post);
     }
+    
+    @PostMapping("/delete")
+    public String delete(Integer id, RedirectAttributes attrs) {
+        
+        Integer postId = postService.delete(id);
+        attrs.addFlashAttribute("deletedPostId", postId);
+        
+        return "redirect:/";
+    }
+    
+    @PostMapping("/modify")
+    public String modify(PostUpdateDto dto,RedirectAttributes attrs) {
+        Integer id = postService.modify(dto);
+        attrs.addAttribute("id", id);
+        return "redirect:/post/detail";
+    }
+    
+    
 }

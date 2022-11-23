@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{ layout/layout.html }">
+
+
+<div layout:fragment="content">
+    <div class="card my-2">
+        <div class="card-header">
+            <h1 style="text-align: center">포스트 수정 페이지</h1>
+        </div>
+        <div class="card-body">
+            <form id="form">
+                <div class="my-2">
+                    <label for="id" class="form-label">번호</label>
+                    <input id="id" class="form-control" th:value="${post.id}" name="id" readonly/>
+                </div>
+                <div class="my-2">
+                    <label for="title" class="form-label">제목</label>
+                    <input id="title" class="form-control" th:value="${post.title}" name="title" autofocus/>
+                </div>
+                <div class="my-2">
+                    <label for="content" class="form-label">내용</label>
+                    <textarea id="content" class="form-control" th:text="${post.content}" name="content"></textarea>
+                </div>
+                <div class="my-2">
+                    <label for="author" class="form-label">작성자</label>
+                    <input id="author" class="form-control" th:value="${post.author}" readonly/>
+                </div>
+            </form>
+            <div class="my-2">
+                <button class="btn btn-success" id="btnUpdate">수정 완료</button>
+                <button class="btn btn-danger" id="btnDelete">삭제</button>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<script layout:fragment="script">
+// form HTML 요소를 찾음.
+const form = document.querySelector('#form');
+// 삭제 버튼 찾아서 이벤트 리스너 등록
+    const btnDelete = document.querySelector('#btnDelete');
+    btnDelete.addEventListener('click', function () {
+        const result = confirm('정말 삭제?');
+        if (result) {
+        	form.action = '/post/delete';
+        	form.method = 'post';
+        	form.submit();
+        }
+    });
+
+// 수정 완료 버튼 찾아서 이벤트 리스너 등록
+const btnUpdate = document.querySelector('#btnUpdate');
+btnUpdate.addEventListener('click', function () {
+	const title = document.querySelector('#title').value
+    const content = document.querySelector('#content').value
+    
+    if(title== '' || content == ''){
+        alert('제목과 내용을 입력해주세요')
+        return;
+    }
+	
+	const check = confirm('정말 수정해?');
+	
+	if(check){ // 사용자가 '확인'을 선택했을 때
+        form.action = '/post/modify' // 제출 요청 주소
+        form.method = 'post' // 제출 요청 방식
+        form.submit() // 서버로 제출
+    }
+});
+
+</script>
+
+</html>
