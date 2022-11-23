@@ -1,5 +1,7 @@
 package com.example.spring03.web;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -62,5 +64,12 @@ public class PostController {
         return "redirect:/post/detail";
     }
     
-    
+    @GetMapping("/search")
+    public String search(String type, String keyword, Model model) {
+        log.info("type = {} | keyword = {}", type,keyword);
+        
+        List<Post>list = postService.search(type, keyword);
+        model.addAttribute("list", list);
+        return "/post/list";
+    }
 }

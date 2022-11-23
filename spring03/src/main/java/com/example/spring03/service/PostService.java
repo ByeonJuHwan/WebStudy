@@ -1,5 +1,6 @@
 package com.example.spring03.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -54,6 +55,26 @@ public class PostService {
         entity.update(dto.getTitle(), dto.getContent()); // (2)
         
         return entity.getId();
+    }
+
+    public List<Post> search(String type, String keyword) {
+        List<Post> list = new ArrayList<>();
+        switch(type) {
+        case "t": // 제목 검색
+            list = postRepository.findByTitleIgnoreCaseContainingOrderByIdDesc(keyword);
+            break;
+        case "c": // 내용 검색
+            list = postRepository.findByContentIgnoreCaseContainingOrderByIdDesc(keyword);
+            break;
+        case "tc": // 제목 + 내용 검색
+            list = postRepository.searchByKeyword(keyword);
+            break;
+        case "a": // 작성자만 검색
+            list = postRepository.findByAuthorIgnoreCaseContainingOrderByIdDesc(keyword);
+            break;
+        }
+        
+        return list;
     }
     
 
