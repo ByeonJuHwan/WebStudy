@@ -38,7 +38,7 @@ window.addEventListener("DOMContentLoaded",()=>{
         axios.post('/api/reply',reqParams) // Ajax Post 요청 보냄
             .then(response => { // 성공 응답(response)이 도착했을 때 실행할 콜백
                 console.log(response)
-                // 댓글 데이터베이스 테이블에 등록
+                
             })
             .catch(error=>{ // 실패 응답(error)이 도착했을 때 실행할 콜백
                 console.log(error)
