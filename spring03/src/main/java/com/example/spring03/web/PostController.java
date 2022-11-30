@@ -2,6 +2,7 @@ package com.example.spring03.web;
 
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,11 +25,13 @@ import lombok.extern.slf4j.Slf4j;
 public class PostController {
     private final PostService postService;
     
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/create")
     public void create() {
         log.info("create()");
     }
     
+    @PreAuthorize("hasRole('USER')")
     @PostMapping("/create")
     public String create(PostCreateDto dto, RedirectAttributes attrs) {
         
@@ -40,6 +43,7 @@ public class PostController {
         return "redirect:/";
     }
     
+    @PreAuthorize("hasRole('USER')")
     @GetMapping({"/detail", "/modify"})
     // 컨트롤러 메서드가 2개 이상의 요청 주소를 처리할 때는 mapping에서 요청 주소를 배열로 설정.
     public void detail(Integer id, Model model) {
@@ -48,6 +52,7 @@ public class PostController {
         model.addAttribute("post", post);
     }
     
+    @PreAuthorize("hasRole('USER')")
     @PostMapping("/delete")
     public String delete(Integer id, RedirectAttributes attrs) {
         
@@ -57,6 +62,7 @@ public class PostController {
         return "redirect:/";
     }
     
+    @PreAuthorize("hasRole('USER')")
     @PostMapping("/modify")
     public String modify(PostUpdateDto dto,RedirectAttributes attrs) {
         Integer id = postService.modify(dto);
